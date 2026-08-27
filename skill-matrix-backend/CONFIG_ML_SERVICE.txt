@@ -1,0 +1,10 @@
+Tambahkan blok ini di dalam file config/services.php Anda,
+di dalam array return [ ... ], sejajar dengan 'mailgun', 'postmark', dll:
+
+    'ml' => [
+        'url' => env('ML_SERVICE_URL', 'http://127.0.0.1:8001'),
+    ],
+
+Lalu tambahkan baris ini di .env:
+
+    ML_SERVICE_URL=http://127.0.0.1:8001
