@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Search, BookOpen, CheckCircle2, AlertTriangle, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -21,7 +21,7 @@ const STATUS_BADGE: Record<string, string> = {
   resign: "bg-red-100 text-red-600",
 };
 
-export default function KaryawanPage() {
+function KaryawanContent() {
   const searchParams = useSearchParams();
   const [search, setSearch] = useState("");
   const [departemenFilter, setDepartemenFilter] = useState("Semua Departemen");
@@ -444,6 +444,14 @@ export default function KaryawanPage() {
         />
       )}
     </div>
+  );
+}
+
+export default function KaryawanPage() {
+  return (
+    <Suspense fallback={<div>Memuat...</div>}>
+      <KaryawanContent />
+    </Suspense>
   );
 }
 
